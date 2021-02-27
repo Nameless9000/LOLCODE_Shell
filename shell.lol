@@ -1,0 +1,111 @@
+HAI 1.3
+
+	I HAS A USER ITZ "nameless"
+
+	I HAS A FIRST_TIME ITZ 0
+	I HAS A EXIT ITZ 0
+	I HAS A ACCESS ITZ 0
+	I HAS A TRIES ITZ 0
+	I HAS A LOCKED ITZ 0
+
+	HOW IZ I PAUSE
+		VISIBLE ":)Press Enter to Continue..."
+		I HAS A TMP_1
+		GIMMEH TMP_1
+		FOUND YR TMP_1
+	IF U SAY SO
+
+	HOW IZ I GET_PASSWORD
+		I HAS A PASS ITZ ""
+		I HAS A AMTLEFT ITZ DIFF OF 3 AN TRIES
+
+		BOTH SAEM LOCKED AN 1, O RLY?
+			YA RLY, AMTLEFT R 0
+		OIC
+
+		BOTH SAEM AMTLEFT AN 0, O RLY?
+			YA RLY
+				VISIBLE ":)[LOCKED OUT]"
+			NO WAI
+				VISIBLE SMOOSH ":)[TRIES LEFT:: " AMTLEFT "]" MKAY
+		OIC
+		
+		VISIBLE "Enter Password::"
+		GIMMEH PASS
+		FOUND YR PASS
+	IF U SAY SO
+
+	HOW IZ I LOGIN YR PASSWORD
+		BOTH SAEM TRIES AN BIGGR OF TRIES AN 3, O RLY?
+		YA RLY
+			LOCKED R 1
+			FOUND YR ":)# Locked Out! #"
+		OIC
+
+		I HAS A RETURN_STR1 ITZ ":)# Access Denied #"
+		PASSWORD, WTF?
+			OMG "password123"
+				ACCESS R USER
+				FIRST_TIME R 1
+				RETURN_STR1 R ":)# Access Granted #"
+				GTFO
+			OMGWTF
+				RETURN_STR1 R ":)# Access Denied #"
+				GTFO
+		OIC
+
+		FOUND YR RETURN_STR1
+	IF U SAY SO
+
+	HOW IZ I SHELL
+		VISIBLE ":):)"
+
+		BOTH SAEM FIRST_TIME AN 1, O RLY?
+			YA RLY
+				FIRST_TIME R 0
+				VISIBLE "Run 'help' to list all commands.:):)"
+		OIC
+
+		I HAS A CMD
+
+		VISIBLE SMOOSH "[" ACCESS "@memeos]: " MKAY
+		GIMMEH CMD
+
+		CMD, WTF?
+			OMG "help"
+				VISIBLE ":)"
+				VISIBLE "Commands:"
+				VISIBLE ":>help  <-- Lists all commands."
+				VISIBLE ":>hello  <-- Testing command."
+				VISIBLE ":>exit  <-- Exits the shell."
+				GTFO
+			OMG "hello"
+				VISIBLE ":)Hello, LOLCODE!"
+				GTFO
+			OMG "exit"
+				EXIT R 1
+				GTFO
+			OMGWTF
+				VISIBLE ":)Invalid Command!"
+				GTFO
+		OIC
+
+		I IZ PAUSE MKAY
+	IF U SAY SO
+
+	IM IN YR LOGIN UPPIN YR TRIES WILE BOTH SAEM ACCESS AN 0
+		I HAS A PASSWORD ITZ I IZ GET_PASSWORD MKAY
+
+		VISIBLE ":):)"
+
+		VISIBLE I IZ LOGIN YR PASSWORD MKAY
+	IM OUTTA YR LOGIN
+
+	I HAS A TMP_2
+	IM IN YR LOGIN UPPIN YR TMP_2 WILE BOTH SAEM EXIT AN 0
+		I IZ SHELL MKAY
+	IM OUTTA YR LOGIN
+
+	VISIBLE ":):)Exiting..."
+
+KTHXBYE
