@@ -1,6 +1,12 @@
 HAI 1.3
 
+BTW		## CONFIG ##
+
+	I HAS A MAX_TRIES ITZ 4
 	I HAS A USER ITZ "nameless"
+	I HAS A USER_PASSWORD ITZ "password"
+
+BTW		## CODE BELOW ##
 
 	I HAS A FIRST_TIME ITZ 0
 	I HAS A EXIT ITZ 0
@@ -17,7 +23,7 @@ HAI 1.3
 
 	HOW IZ I GET_PASSWORD
 		I HAS A PASS ITZ ""
-		I HAS A AMTLEFT ITZ DIFF OF 3 AN TRIES
+		I HAS A AMTLEFT ITZ DIFF OF MAX_TRIES AN TRIES
 
 		BOTH SAEM LOCKED AN 1, O RLY?
 			YA RLY, AMTLEFT R 0
@@ -36,29 +42,27 @@ HAI 1.3
 	IF U SAY SO
 
 	HOW IZ I LOGIN YR PASSWORD
-		BOTH SAEM TRIES AN BIGGR OF TRIES AN 3, O RLY?
+		BOTH SAEM TRIES AN BIGGR OF TRIES AN MAX_TRIES, O RLY?
 		YA RLY
 			LOCKED R 1
 			FOUND YR ":)# Locked Out! #"
 		OIC
 
 		I HAS A RETURN_STR1 ITZ ":)# Access Denied #"
-		PASSWORD, WTF?
-			OMG "password123"
+		BOTH SAEM USER_PASSWORD AN PASSWORD, O RLY?
+			YA RLY
 				ACCESS R USER
 				FIRST_TIME R 1
 				RETURN_STR1 R ":)# Access Granted #"
-				GTFO
-			OMGWTF
+			NO WAI
 				RETURN_STR1 R ":)# Access Denied #"
-				GTFO
 		OIC
 
 		FOUND YR RETURN_STR1
 	IF U SAY SO
 
 	HOW IZ I SHELL
-		VISIBLE ":):)"
+		VISIBLE ""
 
 		BOTH SAEM FIRST_TIME AN 1, O RLY?
 			YA RLY
@@ -73,20 +77,19 @@ HAI 1.3
 
 		CMD, WTF?
 			OMG "help"
-				VISIBLE ":)"
-				VISIBLE "Commands:"
+				VISIBLE ":)Commands:"
 				VISIBLE ":>help  <-- Lists all commands."
 				VISIBLE ":>hello  <-- Testing command."
 				VISIBLE ":>exit  <-- Exits the shell."
 				GTFO
 			OMG "hello"
-				VISIBLE ":)Hello, LOLCODE!"
+				VISIBLE "Hello, LOLCODE!"
 				GTFO
 			OMG "exit"
 				EXIT R 1
 				GTFO
 			OMGWTF
-				VISIBLE ":)Invalid Command!"
+				VISIBLE "Invalid Command!"
 				GTFO
 		OIC
 
@@ -95,8 +98,6 @@ HAI 1.3
 
 	IM IN YR LOGIN UPPIN YR TRIES WILE BOTH SAEM ACCESS AN 0
 		I HAS A PASSWORD ITZ I IZ GET_PASSWORD MKAY
-
-		VISIBLE ":):)"
 
 		VISIBLE I IZ LOGIN YR PASSWORD MKAY
 	IM OUTTA YR LOGIN
